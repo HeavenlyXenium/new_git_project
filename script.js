@@ -1,4 +1,4 @@
-"use strict";
+;"use strict";
 
 let numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "0");
 let personalMovieDB = {
@@ -12,12 +12,12 @@ let personalMovieDB = {
 let requestAboutMovie = function() {
 	let i = 0, last = prompt("Последний просмотренный вами фильм:", "");
 
-		while ( last === "" || last.length > 50 || String(+last) !== "NaN" ) {
+		while ( last === "" || String(last).length > 50 || String(+last) !== "NaN" || last == null) {
 			alert("Некорректный ответ!");
 			last = prompt("Последний просмотренный вами фильм:", "");
 			if (++i == 2) {
-				alert("Ошибка...")
-				throw new Error("Somthing wrong!");
+				alert("Ошибка...");
+				return false;
 			}
 		};
 
@@ -29,16 +29,16 @@ let requestAboutMovie = function() {
 
 console.log(+personalMovieDB.count)
 
-if (+personalMovieDB.count < 10) {
+if (String(personalMovieDB.count) < 10) {
 	alert("Ты мало смотришь!")
 } else if (+personalMovieDB.count > 30) {
 	alert("Ты киноман!")
-} else if (String(+personalMovieDB.count) !== "NaN") {
+} else if (String(+personalMovieDB.count) !== "NaN" && String(+personalMovieDB.count) !== "0") {
 	alert("Ты среднячек!")
 } else {
 	alert("Ошибка проверки количества просмотренных фильмов...")
 };
 
 requestAboutMovie();
-requestAboutMovie();
+//requestAboutMovie();
 //console.log(personalMovieDB.movies);
